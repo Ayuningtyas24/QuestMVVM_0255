@@ -1,5 +1,9 @@
 package com.example.arsitekturmvvm.view
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -9,7 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.example.arsitekturmvvm.R
 import com.example.arsitekturmvvm.model.Siswa
 
@@ -31,5 +38,22 @@ fun TampilSiswa(
                 colors = TopAppBarDefaults.mediumTopAppBarColors(colorResource(id = R.color.purple_500)),
             )
         }) { isiRuang ->
+        Column(
+            modifier = Modifier.padding(isiRuang),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
+            ) {
+                items.forEach { item ->
+                    Column {
+                        Text(item.first.uppercase(), fontSize = 16.sp)
+                        Text(text = item.second, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    }
+                    Divider(thickness = dimensionResource(R.dimen.thickness_divider))
+                }
+            }
+        }
     }
 }
